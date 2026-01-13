@@ -1,5 +1,5 @@
 import React from "react";
-import FAQList from "./components/FAQLList";
+import FAQList from "./components/FAQList";
 
 const App = () => {
   return (
