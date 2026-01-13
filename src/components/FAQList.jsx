@@ -1,21 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import FAQItem from "./FAQItem";
 
-const FAQList = () => {
-  const [darkMode, setDarkMode] = useState(false)
-
-  useEffect(() =>{
-   if(darkMode){
-    document.documentElement.classList.add('dark')
-   }else {
-    document.documentElement.classList.remove('dark')
-   }
-  }, [darkMode])
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
-
+const FAQList = ({toggleDarkMode}) => {
+  
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -29,8 +16,8 @@ const FAQList = () => {
             <i className="bx bx-collapse-alt text-lg"></i>
             <span> Expand All </span>
           </button>
-          <button className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r
-          from-gray-200 to-gray-300 text-gray-700 hover:shadow-md focus:outline-none focus-visible:ring-2
+          <button onClick={toggleDarkMode} className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r
+          from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 text-gray-700 dark:text-gray-200 hover:shadow-md focus:outline-none focus-visible:ring-2
           focus-visible:ring-blue-500
           transition-all  duration-300 cursor-pointer
           ">
