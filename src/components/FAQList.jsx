@@ -1,8 +1,29 @@
-import React from "react";
+import React, { use, useState } from "react";
 import FAQItem from "./FAQItem";
 import faqData from "../data/faqData";
 
 const FAQList = ({ toggleDarkMode, darkMode }) => {
+  const [openId, setOpenId] = useState(null);
+  const [expandAll, setExpandAll] = useState(false);
+
+  const toggleItem = (id) => {
+    if (expandAll) {
+      setExpandAll(false);
+      setOpenId((prevId) => {
+        if (prevId === id) {
+          return null;
+        }
+        return id;
+      });
+    }
+  };
+
+  const toggleExpandAll = () => { 
+
+    setExpandAll(prev => !prev)
+    setOpenId(null)
+  }
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -28,16 +49,18 @@ const FAQList = ({ toggleDarkMode, darkMode }) => {
           </button>
         </div>
       </div>
-      <div className="bg-white/80
+      <div
+        className="bg-white/80
       dark:bg-gray-800/80 rounded-xl shadow-lg
       border border-indigo-100/50 dark:border-indigo-900/30 overflow-hidden
-      transition-a;; duration-300">
+      transition-a;; duration-300"
+      >
         {faqData.map((item) => (
-         <FAQItem key={item.id} item={item}/>
-        ))}
-        {" "}
+          <FAQItem key={item.id} item={item} onClick= {toggleItem} isOpen={expandAll ||
+            openId === item.id}
+          />
+        ))}{" "}
         {/* FAQ Items */}
-     
       </div>
     </div>
   );

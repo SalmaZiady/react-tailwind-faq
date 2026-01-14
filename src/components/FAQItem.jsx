@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const FAQItem = ({ item }) => {
+const FAQItem = ({ item, onClick, isOpen }) => {
+  const answerRef = useRef(null);
+
   return (
     <div
       className="
@@ -9,6 +11,7 @@ const FAQItem = ({ item }) => {
         hover:bg-gradient-to-r hover:from-gray-50/50 hover:to-transparent
         dark:hover:from-gray-800/50 dark:hover:to-transparent
       "
+      id={`faq-item-${item.id}`}
     >
       <button
         className="
@@ -20,10 +23,30 @@ const FAQItem = ({ item }) => {
           dark:hover:from-indigo-400 dark:hover:to-purple-400
         "
       >
-        <span className="text-lg font-medium pr-6">
-          {item.question}
-        </span>
+        <span className="text-lg font-medium pr-6">{item.question}</span>
+        <div
+          className="flex-shrink-0 flex items-center justify-center w-8 min-w-8 aspect-square rounded-full
+        bg-gray-200 dark:bg-gray-700 transition-all duration-200 
+        "
+        >
+          <i className="bx bx-plus text-gray-500 dark:text-gray-400 "> </i>
+        </div>
       </button>
+      <div
+        className="overflow-hidden"
+        id={`answer-${item.id}`}
+        ref={answerRef}
+        style={{
+          maxHeight: isOpen ? answerRef.current.scrollHeight : "0px",
+          opacity: isOpen ? 1 : 0,
+        }}
+      >
+        <div className="p-4 pt-0 pb-5 text-gray-600 dark:text-gray-300">
+          <div className="p-3 rounded-lg overflow-y-auto max-h-[300px]">
+            {item.answer}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
