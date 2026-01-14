@@ -21,7 +21,9 @@ const FAQItem = ({ item, onClick, isOpen }) => {
           hover:bg-clip-text hover:text-transparent
           hover:bg-gradient-to-r hover:from-indigo-600 hover:to-purple-600
           dark:hover:from-indigo-400 dark:hover:to-purple-400
-        "
+        " onClick={()=>
+          onClick(item.id)
+        }
       >
         <span className="text-lg font-medium pr-6">{item.question}</span>
         <div
@@ -37,7 +39,7 @@ const FAQItem = ({ item, onClick, isOpen }) => {
         id={`answer-${item.id}`}
         ref={answerRef}
         style={{
-          maxHeight: isOpen ? answerRef.current.scrollHeight : "0px",
+          maxHeight: isOpen ? answerRef.current?.scrollHeight : "0px",
           opacity: isOpen ? 1 : 0,
         }}
       >
