@@ -38,7 +38,8 @@ const App = () => {
           Development.
         </p>
       </header>
-      <FAQList toggleDarkMode={toggleDarkMode} />
+      <FAQList toggleDarkMode={toggleDarkMode}
+      darkMode={darkMode} />
     </div>
   );
 };

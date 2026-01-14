@@ -1,8 +1,8 @@
 import React from "react";
 import FAQItem from "./FAQItem";
+import faqData from "../data/faqData";
 
-const FAQList = ({toggleDarkMode}) => {
-  
+const FAQList = ({ toggleDarkMode, darkMode }) => {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -16,18 +16,29 @@ const FAQList = ({toggleDarkMode}) => {
             <i className="bx bx-collapse-alt text-lg"></i>
             <span> Expand All </span>
           </button>
-          <button onClick={toggleDarkMode} className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r
+          <button
+            onClick={toggleDarkMode}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r
           from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 text-gray-700 dark:text-gray-200 hover:shadow-md focus:outline-none focus-visible:ring-2
           focus-visible:ring-blue-500
           transition-all  duration-300 cursor-pointer
-          ">
-           <i className="bx bx-moon text-xl"></i>
+          "
+          >
+            <i className={`bx bx-${darkMode ? "sun" : "moon"} text-xl`}></i>
           </button>
         </div>
       </div>
-
-      {/* FAQ Items */}
-      <FAQItem />
+      <div className="bg-white/80
+      dark:bg-gray-800/80 rounded-xl shadow-lg
+      border border-indigo-100/50 dark:border-indigo-900/30 overflow-hidden
+      transition-a;; duration-300">
+        {faqData.map((item) => (
+         <FAQItem key={item.id} item={item}/>
+        ))}
+        {" "}
+        {/* FAQ Items */}
+     
+      </div>
     </div>
   );
 };
